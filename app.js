@@ -39,6 +39,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(validator());
 
+
+app.use((req, res, next) => {
+    res.locals.login = req.isAuthenticated();
+    //console.log(login);
+    //console.log(req.session);
+    res.locals.session = req.session;
+    next();
+});
 app.use('/', index);
 
 app.listen(5000);
