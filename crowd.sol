@@ -1,19 +1,10 @@
-<<<<<<< HEAD
 pragma solidity >=0.4.22 <0.6.0;
-=======
-pragma solidity ^0.5.12;
->>>>>>> 8ecd458a5c946866eee100d083d97cb057e2262a
 
 contract ProjectGenerator {
     Project[] public Projects;
     
-<<<<<<< HEAD
     function createProject(uint deadline, string memory description, uint projectGoal) public {
         Project newProject = new Project(msg.sender, deadline, description, projectGoal);
-=======
-    function createProject(uint dur) public {
-        Project newProject = new Project(msg.sender, dur);
->>>>>>> 8ecd458a5c946866eee100d083d97cb057e2262a
         Projects.push(newProject);
     }
     
@@ -49,11 +40,7 @@ contract Project {
         _;
     }
     
-<<<<<<< HEAD
     constructor (address payable manager, uint duration, string memory descript, uint goal) public {
-=======
-    constructor (address payable manager, uint duration) public {
->>>>>>> 8ecd458a5c946866eee100d083d97cb057e2262a
         creator = manager;
         startTime = now;
         deadline = now + (duration * 1 days);
@@ -76,10 +63,6 @@ contract Project {
         {
             state = State.Successful;
             creator.transfer(moneyRaised);
-<<<<<<< HEAD
-=======
-            moneyRaised = 0;
->>>>>>> 8ecd458a5c946866eee100d083d97cb057e2262a
         }
         
         if (now > deadline) 
