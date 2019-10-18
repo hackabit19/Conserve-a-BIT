@@ -1,14 +1,14 @@
-pragma solidity ^0.4.19;
+pragma solidity >=0.4.22 <0.6.0;
 
 contract ProjectGenerator {
-    address[] public Projects;
+    Project[] public Projects;
     
-    function createProject(uint dur) public {
-        address newProject = new Project(msg.sender, dur);
+    function createProject(uint deadline, string memory description, uint projectGoal) public {
+        Project newProject = new Project(msg.sender, deadline, description, projectGoal);
         Projects.push(newProject);
     }
     
-    function AllProjects() public view returns (address[]) {
+    function AllProjects() public view returns (Project[] memory) {
         return Projects;
     }
 }
@@ -23,7 +23,7 @@ contract Project {
     
     
     string public description;
-    address public creator;
+    address payable public creator;
     address[] public contributors;
     uint public contributorsCount;
     uint public projectGoal;
@@ -40,10 +40,12 @@ contract Project {
         _;
     }
     
-    constructor (address manager, uint duration) public {
+    constructor (address payable manager, uint duration, string memory descript, uint goal) public {
         creator = manager;
         startTime = now;
         deadline = now + (duration * 1 days);
+        description = descript;
+        projectGoal = goal;
     }
     
     function support () inState(State.Fundraising) payable public{
@@ -61,14 +63,12 @@ contract Project {
         {
             state = State.Successful;
             creator.transfer(moneyRaised);
-            moneyRaised = 0;
-            //payOut();
         }
-        else if (now > deadline) 
+        
+        if (now > deadline) 
         {
             state = State.Expired;
         }
         
     }
 }
-
