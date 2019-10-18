@@ -1,5 +1,45 @@
-<html>
-    <body>
-        <h1>Works</h1>
-    </body>
-</html>
+
+        {{#if login}}
+        <h2 class="my-4">Active projects
+        {{!-- <small>Secondary Text</small> --}}
+      </h2>
+      <hr><hr>
+      <div class="row">
+        <div class="col-md-3">
+          <a href="#">
+            {{!-- <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""> --}}
+            <h3>Project One</h3>
+          </a>
+          
+        </div>
+        <div class="col-md-5">
+          {{!-- <h3>Project One</h3> --}}
+          <p>Donors:</p>
+          <p>Shared:</p>
+          <a class="btn btn-primary" href="#">Donate</a>
+          {{!-- <a class="btn btn-primary" href="#">View Project</a> --}}
+        </div>
+        <div class="col-md-7">
+            <p>Fund Raised:</p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-3">
+          <a href="#">
+            {{!-- <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""> --}}
+            <h3>Project One</h3>
+          </a>
+          
+        </div>
+        <div class="col-md-5">
+          {{!-- <h3>Project One</h3> --}}
+          <p>Donors:</p>
+          <p>Shared:</p>
+          <a class="btn btn-primary" href="#">Donate</a>
+          {{!-- <a class="btn btn-primary" href="#">View Project</a> --}}
+        </div>
+      </div>
+        {{else}}
+        <h1>Please login to continue</h1>
+        {{/if}}

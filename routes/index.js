@@ -1,6 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var flash = require('connect-flash');
+var web3 = require('web3');
 var router = express.Router();
 
 router.get('/', (req, res, next) => {
