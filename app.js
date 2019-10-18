@@ -31,6 +31,7 @@ app.use(session({
     store: new mongoStore({mongooseConnection: db}),
     cookie: {}
 }));
+app.use(validator());
 
 app.use('/', index);
 
