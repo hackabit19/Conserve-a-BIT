@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc224935-a4b1-40e7-b15e-4e37ca19d0f6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ethereum/build/:Campaign.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ethereum/build/:CampaignFactory.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ethereum/compile.js" beforeDir="false" afterPath="$PROJECT_DIR$/ethereum/compile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ethereum/contracts/Project.sol" beforeDir="false" afterPath="$PROJECT_DIR$/ethereum/contracts/Project.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ethereum/deploy.js" beforeDir="false" afterPath="$PROJECT_DIR$/ethereum/deploy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ethereum/build/ProjectGenerator.json" beforeDir="false" afterPath="$PROJECT_DIR$/ethereum/build/ProjectGenerator.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,6 +41,11 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="index.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/pages/index.js" working-dir="$PROJECT_DIR$/pages">
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -54,7 +56,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1571501446608</updated>
-      <workItem from="1571501449336" duration="2949000" />
+      <workItem from="1571501449336" duration="11868000" />
     </task>
     <servers />
   </component>
