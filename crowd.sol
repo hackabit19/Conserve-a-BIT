@@ -81,6 +81,7 @@ contract Project {
             if (moneyRaised >= projectGoal)
             {
                 state = State.Successful;
+                //vendorAllotment();
             }
             else
             {
@@ -90,8 +91,9 @@ contract Project {
         }
     }
 
-    function requestFunds(uint requireFundAmount, string reason) public restricted
+    function requestFunds(uint requireFundAmount, string memory  reason) public 
     {
+    
         Request memory newRequest = Request({
            description: reason,
            value: requireFundAmount,
@@ -104,15 +106,29 @@ contract Project {
     
     function approveRequest(uint index) public {
         Request storage request = requests[index];
-
-        require(approvers[msg.sender]);
+            //
+            bool check=false;
+            for (uint i=0; i<contributors.length; i++) {
+            if (contributors[i] == msg.sender) {
+                check=true;
+            }
+        }
+            // 
+        require(check == true);
         require(!request.approvals[msg.sender]);
 
         request.approvals[msg.sender] = true;
         request.approvalCount++;
     }
     
-    function finalizeRequest(uint index) public restricted {
+    
+    function callFinalizeRequest(uint index) public
+    {
+        if(now > deadline)
+        finalizeRequest(index);
+    }
+    
+    function finalizeRequest(uint index) private  {
         Request storage request = requests[index];
         require(!request.complete);
         if(request.approvalCount >= contributorsCount/2){
@@ -129,22 +145,10 @@ contract Project {
                 creator.transfer(request.value);
                 request.complete = true;
             }
+        }
         else{
             //rejected
             requestrejectedcount++;
         }
     }
-    // function checkGoalStatus() public 
-    // {
-    //     if(state == State.Successful)
-    //     {
-    //         // allocate vendors
-            
-            
-    //     }
-    //     else
-    //     {
-            
-    //     }
-    // }
 }
