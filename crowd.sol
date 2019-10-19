@@ -15,6 +15,14 @@ contract ProjectGenerator {
 
 contract Project {
     
+    struct Request {
+        string description;
+        uint value;
+        bool complete;
+        uint approvalCount;
+        mapping(address => bool) approvals;
+    }
+    
     enum State {
         Fundraising,
         Expired,
@@ -25,6 +33,11 @@ contract Project {
     string public description;
     address payable public creator;
     address[] public contributors;
+    bool[] public contributorsvote;
+    Request[] public requests;
+    uint requestapprovedcount;
+    uint requestrejectedcount;
+    uint warning;
     uint public contributorsCount;
     uint public projectGoal;
     uint public startTime;
@@ -46,6 +59,9 @@ contract Project {
         deadline = now + (duration * 1 days);
         description = descript;
         projectGoal = goal;
+        moneyRaised = 0;
+        contributorsCount = 0;
+        
     }
     
     function support () inState(State.Fundraising) payable public{
@@ -55,20 +71,80 @@ contract Project {
         moneyRaised = moneyRaised + (msg.value);
         contributorsCount++;
         FundingCompleteOrExpired();
+        //creator.transfer(msg.value);
     }
     
     function FundingCompleteOrExpired() public
     {
-        if (moneyRaised >= projectGoal)
-        {
-            state = State.Successful;
-            creator.transfer(moneyRaised);
-        }
-        
         if (now > deadline) 
         {
-            state = State.Expired;
+            if (moneyRaised >= projectGoal)
+            {
+                state = State.Successful;
+            }
+            else
+            {
+                state = State.Expired;
+            }
+            //checkGoalStatus();
         }
-        
     }
+
+    function requestFunds(uint requireFundAmount, string reason) public restricted
+    {
+        Request memory newRequest = Request({
+           description: reason,
+           value: requireFundAmount,
+           complete: false,
+           approvalCount: 0
+        });
+        
+        requests.push(newRequest);
+    }
+    
+    function approveRequest(uint index) public {
+        Request storage request = requests[index];
+
+        require(approvers[msg.sender]);
+        require(!request.approvals[msg.sender]);
+
+        request.approvals[msg.sender] = true;
+        request.approvalCount++;
+    }
+    
+    function finalizeRequest(uint index) public restricted {
+        Request storage request = requests[index];
+        require(!request.complete);
+        if(request.approvalCount >= contributorsCount/2){
+            if(request.approvalCount >= contributorsCount/2 + contributorsCount/4){
+                // approved
+                requestapprovedcount++;
+                creator.transfer(request.value);
+                request.complete = true;
+            }
+            else{
+                //approve but warning
+                requestapprovedcount++;
+                warning++;
+                creator.transfer(request.value);
+                request.complete = true;
+            }
+        else{
+            //rejected
+            requestrejectedcount++;
+        }
+    }
+    // function checkGoalStatus() public 
+    // {
+    //     if(state == State.Successful)
+    //     {
+    //         // allocate vendors
+            
+            
+    //     }
+    //     else
+    //     {
+            
+    //     }
+    // }
 }
