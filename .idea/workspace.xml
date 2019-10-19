@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc224935-a4b1-40e7-b15e-4e37ca19d0f6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ethereum/build/ProjectGenerator.json" beforeDir="false" afterPath="$PROJECT_DIR$/ethereum/build/ProjectGenerator.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/4aaf7ff879cab146438c.hot-update.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/6.4aaf7ff879cab146438c.hot-update.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/bundles/pages/_document.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/bundles/pages/_document.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/bundles/pages/_error.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/bundles/pages/_error.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/bundles/pages/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/bundles/pages/projects/new.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/bundles/pages/projects/new.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/commons.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/commons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dist/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dist/components/Layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dist/pages/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/dist/pages/projects/new.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/dist/pages/projects/new.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/manifest.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/manifest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/projects/new.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/projects/new.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +67,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1571501446608</updated>
-      <workItem from="1571501449336" duration="11868000" />
+      <workItem from="1571501449336" duration="15589000" />
     </task>
     <servers />
   </component>
