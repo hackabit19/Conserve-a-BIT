@@ -3,6 +3,7 @@ import {Form, Button, Input, Message} from 'semantic-ui-react';
 import Layout from "../../components/Layout";
 import generator from '../../ethereum/generator';
 import web3 from '../../ethereum/web3';
+import { Router } from '../../routes';
 
 class ProjectNew extends Component {
     state = {
@@ -24,6 +25,8 @@ class ProjectNew extends Component {
                 .send({
                     from: accounts[0]
                 });
+
+            Router.pushRoute('/');
         }
         catch (err) {
             this.setState({errormsg: err.message});
@@ -36,7 +39,7 @@ class ProjectNew extends Component {
     render() {
         return (
             <Layout>
-                <h3>Create a Campaign!</h3>
+                <h3>Create a Project!</h3>
             <Form onSubmit = {this.onSubmit} error={this.state.errormsg}>
                 <Form.Field>
                     <label>Goal</label>

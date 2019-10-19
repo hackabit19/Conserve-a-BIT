@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import generator from '../ethereum/generator'
 import {Card, Button} from 'semantic-ui-react';
 import Layout from "../components/Layout";
+import { Link } from '../routes';
 
 class ProjectIndex extends Component {
 
@@ -14,7 +15,11 @@ class ProjectIndex extends Component {
         const items = this.props.projects.map(address => {
             return {
                 header: address,
-                description: <a>View Campaign</a>,
+                description: (
+                    <Link route = {`/projects/${address}`}>
+                        <a>View Project</a>
+                    </Link>
+                ),
                 fluid: true
             };
         });
@@ -29,13 +34,16 @@ class ProjectIndex extends Component {
             <div>
 
             <h3>Open Projects</h3>
-
-            <Button
-                floated = "right"
-                content = "Create Project"
-                icon = "add circle"
-                primary = {true}
-            />
+                <Link route = "/projects/new">
+                    <a>
+                        <Button
+                            floated = "right"
+                            content = "Create Project"
+                            icon = "add circle"
+                            primary = {true}
+                        />
+                    </a>
+                </Link>
              {this.renderProjects()}
         </div>
             </Layout>
