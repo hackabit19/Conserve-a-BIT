@@ -1,5 +1,11 @@
 var web3 = require('web3');
-var web3js = new web3(web3.currentProvider);
+const HDWalletProvider = require('truffle-hdwallet-provider');
+
+const provider = new HDWalletProvider(
+	'perfect upgrade curious dream surround rack reason inspire kingdom famous fruit puppy',
+	'	https://rinkeby.infura.io/v3/cdc1d04901634213b13ff2c7f29bc313'
+);
+const web3js = new web3(provider);
 const address = "0xeA1E25d657802eb5Bfe0E81AD94D8D1B0B512ABf";
 const abi = [
 	{
