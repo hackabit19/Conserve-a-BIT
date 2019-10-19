@@ -8,6 +8,7 @@ class ProjectIndex extends Component {
 
     static async getInitialProps() {
         const projects = await generator.methods.AllProjects().call();
+
         return { projects };
     }
 
