@@ -1,98 +1,201 @@
-pragma solidity ^0.4.19;
+pragma solidity >=0.4.22 <0.6.0;
 
-contract CampaignFactory {
-    address[] public deployedCampaigns;
+contract ProjectGenerator {
+    Project[] public Projects;
+    mapping (address => uint) public balances;
 
-    function createCampaign(uint minimum) public {
-        address newCampaign = new Campaign(minimum, msg.sender);
-        deployedCampaigns.push(newCampaign);
+    function createProject(string memory project_name ,uint deadline, string memory description, uint projectGoal) public {
+        Project newProject = new Project(msg.sender, deadline, description, projectGoal, project_name);
+        Projects.push(newProject);
     }
 
-    function getDeployedCampaigns() public view returns (address[]){
-        return deployedCampaigns;
+    function AllProjects() public view returns (Project[] memory) {
+        return Projects;
+    }
+
+    function insert(uint val, address contri) external {
+        balances[contri] = balances[contri] + val;
     }
 }
 
-contract Campaign {
+contract Project {
+
+    ProjectGenerator ProjectGeneratorInstance = ProjectGenerator(0xbBF289D846208c16EDc8474705C748aff07732dB);
 
     struct Request {
         string description;
         uint value;
-        address recipient;
         bool complete;
-        uint approvalCount;
-        mapping(address => bool) approvals;
+        uint disapprovalCount;
+        mapping(address => bool) disapprovals;
     }
 
-    modifier restricted() {
-        require(msg.sender == manager);
+    enum State {
+        Fundraising,
+        Expired,
+        Successful
+    }
+
+
+    string public description;
+    //address payable public creator;
+    address public creator;
+    address[] public contributors;
+    bool[] public contributorsvote;
+    Request[] public requests;
+    uint public warning;
+    uint public contributorsCount;
+    uint public withdrawn_amount;
+    uint public projectGoal;
+    uint public startTime;
+    uint public deadline;
+    uint public moneyRaised;
+    string public projectname;
+
+    mapping (address => uint) public contributions;
+
+    State public state = State.Fundraising;
+
+    modifier inState(State _state) {
+        require(state == _state);
         _;
     }
 
-    Request[] public requests;
-    address public manager;
-    uint public minimumContribution;
-    mapping(address => bool) public approvers;
-    uint public approversCount;
+    function getDetails() public view returns
+    (
+        string memory projectName,
+        //address payable projectCreator,
+        address projectCreator,
+        string memory projectDesc,
+        uint deadlines,
+        State currentState,
+        uint amountCollected,
+        uint goalAmount
+    ) {
+        projectName = projectname;
+        projectCreator = creator;
+        projectDesc = description;
+        deadlines = deadline;
+        currentState = state;
+        amountCollected = moneyRaised;
+        goalAmount = projectGoal;
 
-    function Campaign(uint minimum, address creator) public {
-        manager = creator;
-        minimumContribution = minimum;
     }
 
-    function contribute() payable public {
-        require(msg.value > minimumContribution);
+    constructor (address manager, uint duration, string memory descript, uint goal, string memory name) public {
+        creator = manager;
+        projectname= name;
+        startTime = now;
+        deadline = now + (duration * 1 days);
+        description = descript;
+        projectGoal = goal;
+        moneyRaised = 0;
+        contributorsCount = 0;
 
-        approvers[msg.sender] = true;
-        approversCount++;
     }
 
-    function createRequest(string description, uint value, address recipient) public restricted {
+    function support () inState(State.Fundraising) payable public{
+        require(msg.sender != creator);
+        contributors.push(msg.sender);
+        contributions[msg.sender] = contributions[msg.sender] + (msg.value);
+        moneyRaised = moneyRaised + (msg.value);
+        contributorsCount++;
+        FundingCompleteOrExpired();
+        //creator.transfer(msg.value);
+    }
+
+    function FundingCompleteOrExpired() public
+    {
+        if (now > deadline)
+        {
+            if (moneyRaised >= projectGoal)
+            {
+                state = State.Successful;
+                //vendorAllotment();
+            }
+            else
+            {
+                state = State.Expired;
+            }
+            //checkGoalStatus();
+        }
+    }
+
+    function requestFunds(uint requireFundAmount, string memory  reason) public
+    {
+        require(creator==msg.sender);
         Request memory newRequest = Request({
-           description: description,
-           value: value,
-           recipient: recipient,
+           description: reason,
+           value: requireFundAmount,
            complete: false,
-           approvalCount: 0
+           disapprovalCount: 0
         });
 
         requests.push(newRequest);
     }
 
-    function approveRequest(uint index) public {
+    function DisapproveRequest(uint index) public {
         Request storage request = requests[index];
+            //
+            bool check=false;
+            for (uint i=0; i<contributors.length; i++) {
+            if (contributors[i] == msg.sender) {
+                check=true;
+            }
+        }
+            //
+        require(check == true);
+        require(!request.disapprovals[msg.sender]);
 
-        require(approvers[msg.sender]);
-        require(!request.approvals[msg.sender]);
-
-        request.approvals[msg.sender] = true;
-        request.approvalCount++;
+        request.disapprovals[msg.sender] = true;
+        request.disapprovalCount++;
     }
 
-    function finalizeRequest(uint index) public restricted {
+
+    function callFinalizeRequest(uint index) public
+    {
+        if(now > deadline)
+        finalizeRequest(index);
+    }
+
+    function finalizeRequest(uint index) private  {
         Request storage request = requests[index];
 
-        require(request.approvalCount > (approversCount/2));
         require(!request.complete);
 
-        request.recipient.transfer(request.value);
-        request.complete = true;
-    }
+        uint hundredtimes = 100 * request.disapprovalCount;
 
-    function getSummary() public view returns (
-        uint, uint, uint, uint, address
-    )
-    {
-        return (
-            minimumContribution,
-            this.balance,
-            requests.length,
-            approversCount,
-            manager
-        );
-    }
+        if(hundredtimes>=50*contributorsCount){
+            warning = warning + 1;
+        }
+        if(hundredtimes>=60*contributorsCount){
+            warning = warning + 1;
+        }
+        if(hundredtimes >=70*contributorsCount){
+            warning = warning + 1;
+        }
+        if(hundredtimes>=80*contributorsCount){
+            warning = warning + 1;
+        }
+        if(hundredtimes>=90*contributorsCount){
+            warning = warning + 1;
+        }
+        if(warning>=5){
+            // project quit funds given back
+            uint remaining_amount = moneyRaised - withdrawn_amount;
+            state=State.Expired;
+            for (uint i=0; i<contributors.length; i++)
+            {
+               // ProjectGeneratoraInstance.balances[contributors[i]] = ProjectGeneratorInstance.balances[contributors[i]] + (remaining_amount*contributions[contributors[i]])/moneyRaised;
+               ProjectGeneratorInstance.insert(contributions[contributors[i]], contributors[i]);
+            }
 
-  function getRequestsCount() public view returns (uint) {
-      return requests.length;
-  }
+        }
+        else{
+            // give to creator
+            creator.transfer(request.value);
+            request.complete = true;
+            withdrawn_amount = withdrawn_amount + request.value;
+        }
+    }
 }
