@@ -1,0 +1,25 @@
+<div class="row centered mt-4">
+  <div class="col-md-4 col-md-offset-4 mx-auto">
+    <h1>Add Project</h1>
+    <form method="post" action="/addproject">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name</label>
+      <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Enter project name">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Description</label>
+      <input type="text" id ="desc" name ="desc" class="form-control" placeholder="Description">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Goal</label>
+      <input type="number" id ="goal" name ="goal" class="form-control" placeholder="Goal">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">deadline</label>
+      <input type="number" id ="deadline" name ="deadline" class="form-control" placeholder="deadline">
+    </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  </div>

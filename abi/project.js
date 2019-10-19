@@ -1,22 +1,6 @@
-[
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "FundingCompleteOrExpired",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "support",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
+var web3 = require('web3');
+
+const abi = [
 	{
 		"inputs": [
 			{
@@ -28,11 +12,30 @@
 				"internalType": "uint256",
 				"name": "duration",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "descript",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "goal",
+				"type": "uint256"
 			}
 		],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "FundingCompleteOrExpired",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"constant": true,
@@ -195,5 +198,18 @@
 		"payable": false,
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "support",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
 	}
-]
+];
+// export default (address) => {
+// 	const instance = new web3.eth.Contract(abi, address);
+// 	return instance;
+// };
