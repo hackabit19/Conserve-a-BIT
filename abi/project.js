@@ -29,6 +29,11 @@ const abi = [
 				"internalType": "uint256",
 				"name": "goal",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
 			}
 		],
 		"payable": false,
@@ -37,8 +42,38 @@ const abi = [
 	},
 	{
 		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "DisapproveRequest",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
 		"inputs": [],
 		"name": "FundingCompleteOrExpired",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "callFinalizeRequest",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -103,6 +138,27 @@ const abi = [
 	},
 	{
 		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "contributorsvote",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [],
 		"name": "creator",
 		"outputs": [
@@ -149,6 +205,51 @@ const abi = [
 	{
 		"constant": true,
 		"inputs": [],
+		"name": "getDetails",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "projectName",
+				"type": "string"
+			},
+			{
+				"internalType": "address payable",
+				"name": "projectCreator",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "projectDesc",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "deadlines",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum Project.State",
+				"name": "currentState",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amountCollected",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "goalAmount",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
 		"name": "moneyRaised",
 		"outputs": [
 			{
@@ -169,6 +270,77 @@ const abi = [
 			{
 				"internalType": "uint256",
 				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "projectname",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "requireFundAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "reason",
+				"type": "string"
+			}
+		],
+		"name": "requestFunds",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "requests",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "complete",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "disapprovalCount",
 				"type": "uint256"
 			}
 		],
@@ -214,15 +386,28 @@ const abi = [
 		"payable": true,
 		"stateMutability": "payable",
 		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "withdrawn_amount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ];
 // export default (address) => {
 // 	const instance = new web3.eth.Contract(abi, address);
 // 	return instance;
 // };
-
-function contract(address) {
+module.exports.projectSaved = function (address) {
 	const instance = new web3js.eth.Contract(abi, address);
 	return instance;
 }
-module.exports = contract();

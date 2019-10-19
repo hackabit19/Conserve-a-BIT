@@ -57,47 +57,32 @@
 
 
 
-      
+      {{#each projectData}}
       <div class="row">
+        
         <div class="col-md-3">
           <a href="#">
             {{!-- <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""> --}}
-            <h3>Project One</h3>
+            <h3>Project {{this.projectName}}</h3>
           </a>
           
         </div>
         <div class="col-md-5">
           {{!-- <h3>Project One</h3> --}}
-          <p>Donors:</p>
-          <p>Shared:</p>
+          {{!-- <p>Goal: {{projectData[6]}}</p>
+          <p>Reached:{{projectData[5]}}</p>
+          <p>Description: {{projectData[2]}}</p> --}}
           <a class="btn btn-primary" href="#">Donate</a>
           {{!-- <a class="btn btn-primary" href="#">View Project</a> --}}
         </div>
         <div class="col-md-7">
-            <p>Fund Raised:</p>
+            
         </div>
       </div>
+      {{/each}}
 
 
       <hr>
-
-      
-      <div class="row">
-        <div class="col-md-3">
-          <a href="#">
-            {{!-- <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""> --}}
-            <h3>Project One</h3>
-          </a>
-          
-        </div>
-        <div class="col-md-5">
-          {{!-- <h3>Project One</h3> --}}
-          <p>Donors:</p>
-          <p>Shared:</p>
-          <a class="btn btn-primary" href="#">Donate</a>
-          {{!-- <a class="btn btn-primary" href="#">View Project</a> --}}
-        </div>
-      </div>
         {{else}}
         <h1>Please login to continue</h1>
         {{/if}}

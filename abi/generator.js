@@ -12,6 +12,11 @@ const abi = [
 		"constant": false,
 		"inputs": [
 			{
+				"internalType": "string",
+				"name": "project_name",
+				"type": "string"
+			},
+			{
 				"internalType": "uint256",
 				"name": "deadline",
 				"type": "uint256"

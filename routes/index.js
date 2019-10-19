@@ -9,7 +9,7 @@ const HDWalletProvider = require('truffle-hdwallet-provider');
 
 const provider = new HDWalletProvider(
 	'perfect upgrade curious dream surround rack reason inspire kingdom famous fruit puppy',
-	'	https://rinkeby.infura.io/v3/cdc1d04901634213b13ff2c7f29bc313'
+	'https://rinkeby.infura.io/v3/cdc1d04901634213b13ff2c7f29bc313'
 );
 const web3js = new web3(provider);
 //
@@ -20,19 +20,26 @@ var router = express.Router();
 //console.log(web3.currentProvider);
 
 router.get('/', async (req, res, next) => {
+    var projectData = [];
     var account = await web3js.eth.getAccounts();
-    var pro = await generator.methods.AllProjects().call().then((pro) => {
+    await generator.methods.AllProjects().call().then(async (pro) => {
         
-        pro.forEach((projects) => {
-            
-              console.log(projects.description);
-            });
+                var promiseArray = [];
+                pro.forEach((address) => {
+                    promiseArray.push(new Promise((resolve, reject) => {
+                        const projectInstance = project.projectSaved(address);
+                        const promise = projectInstance.methods.getDetails().call().then((data) => {
+                        const projectInfo = data;
+                        resolve(projectInfo);
+                        });
+                    }))
+                });
+                res.render('index', {projectData: await Promise.all(promiseArray)});
 
-        //console.log(add[0]);
+
+            });
+            
     });
-    
-    res.render('index');
-});
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
     req.logout();
@@ -69,7 +76,7 @@ router.post('/signin', passport.authenticate('local.signin', {
 
 router.post('/addproject', async (req, res, next) => {
     var account = await web3js.eth.getAccounts();
-     //console.log(account);
+     console.log(account);
     //  await generator.methods.createProjects(
     //      req.params.deadline,
     //      req.params.desc,
@@ -81,13 +88,18 @@ router.post('/addproject', async (req, res, next) => {
     //  }).catch({});
      //abi.methods.support()
      await generator.methods.createProject(
+         req.body.name,
          req.body.deadline,
          req.body.desc,
          req.body.goal
      ).send({
          gas: '4712388',
          from: account[0]
+     }).then(() => {
+         console.log("project created");
+         res.redirect('/');
      });
+     
 });
 
 function isLoggedIn(req, res, next) {
