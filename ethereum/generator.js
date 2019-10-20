@@ -3,7 +3,7 @@ import ProjectGenerator from './build/ProjectGenerator.json';
 
 const instance = new web3.eth.Contract(
     JSON.parse(ProjectGenerator.interface),
-    '0x51B209f672797034F8a5a746415CfeCaBB9A7F7a'
+    '0xb3d3964Da6F340807B9835844EA320bC7070820f'
 );
 
 export default instance;

@@ -39,7 +39,7 @@ class ProjectShow extends Component {
                 style: { overflowWrap: 'break-word' }
             },
             {
-                header: projectGoal,
+                header: web3.utils.fromWei(projectGoal, 'ether'),
                 meta: 'Goal of project',
                 description: 'TOTAL MONEY TO BE RAISED',
 
@@ -58,7 +58,6 @@ class ProjectShow extends Component {
             }
         ];
 
-        console.log(contributorsCount);
 
         return <Card.Group items = {items} />;
     }
@@ -66,7 +65,7 @@ class ProjectShow extends Component {
     render() {
         return (
             <Layout>
-                <h3>Project Show</h3>
+                <h3>Project Details</h3>
                 <Grid>
                     <Grid.Column width={10}>
                         {this.renderCards()}

@@ -6,12 +6,15 @@ import { Router } from '../routes';
 
 class ContributeForm extends Component {
     state = {
-        value: ''
+        value: '',
+        error: '',
+        loading:false
     };
 
     onSubmit = async event => {
         event.preventDefault();
         const project = Project(this.props.address);
+        this.setState({loading:true});
 
         try {
             const accounts = await web3.eth.getAccounts();
@@ -21,13 +24,16 @@ class ContributeForm extends Component {
             });
             Router.replaceRoute(`/projects/${this.props.address}`)
         } catch (err) {
-
+            this.setState({error: err.message})
         }
+
+
+        this.setState({loading: false, value: ''});
     };
 
     render() {
         return (
-            <Form onSubmit={this.onSubmit}>
+            <Form onSubmit={this.onSubmit} error={!!this.state.error}>
                 <Form.Field>
                     <label> Amount to Contribute</label>
                     <Input
@@ -37,7 +43,9 @@ class ContributeForm extends Component {
                         labelPosition="right"
                     />
                 </Form.Field>
-                <Button primary>
+                <Message error header="OOPS!" content={this.state.error}/>
+
+                <Button primary loading={this.state.loading}>
                     Contribute!
                 </Button>
             </Form>
