@@ -70,7 +70,8 @@ contract Project {
         uint deadlines,
         State currentState,
         uint amountCollected,
-        uint goalAmount
+        uint goalAmount,
+        uint countOfContributors
     ) {
         projectName = projectname;
         projectCreator = creator;
@@ -79,7 +80,7 @@ contract Project {
         currentState = state;
         amountCollected = moneyRaised;
         goalAmount = projectGoal;
-
+        countOfContributors = contributorsCount;
     }
 
     constructor (address manager, uint duration, string memory descript, uint goal, string memory name) public {
@@ -198,4 +199,14 @@ contract Project {
             withdrawn_amount = withdrawn_amount + request.value;
         }
     }
+
+    function getSummary() public view returns (uint, uint, uint, address)
+        {
+            return (
+                projectGoal,
+                moneyRaised,
+                contributorsCount,
+                creator
+            );
+        }
 }

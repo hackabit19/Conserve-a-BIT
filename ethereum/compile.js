@@ -9,6 +9,8 @@ const projectPath = path.resolve(__dirname, 'contracts', 'Project.sol');
 const source = fs.readFileSync(projectPath, 'utf-8');
 
 const output = solc.compile(source, 1).contracts;
+console.log(output);
+
 fs.ensureDirSync(buildPath);
 
 for (let contract in output) {
