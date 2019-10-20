@@ -37,9 +37,12 @@ In root directory:
 
 `node server`
 
+## Challanges faced:
 
-
-
+* Studying in-depth understanding of Blockchain technology (Our first blockchain project)
+* Developing logic for our innovative Smart Contract
+* Problems in communication between Rinkeby test network and node js webapp
+* Had to switch to React Innovative Model for Smart Contract
 
 ## Tech-Stack:
 
