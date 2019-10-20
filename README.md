@@ -20,8 +20,27 @@ A crowdfunding platform for non-profits, government organisations and startups t
 
 
 `npm install --save`
+### Compile and Deploy Contract
+
+-----------
+In ethereum directory: 
+
+`node compile.js`
+
+`node deploy.js`
+
+-----------
+
+* Copy the contract ID obtained on terminal
+* Paste it to generator.js
+
+-----------
+In root directory:
 
 `node server`
+
+
+
 
 
 ## Tech-Stack:
