@@ -47,7 +47,7 @@ In root directory:
 
 ## Tech-Stack:
 
- * [*Solidity*](https://github.com/ethereum/solidity) 
+ * [*Solidity*](https://github.com/ethereum/solidity/) 
  * [*Node js*](https://nodejs.org)
  * [*React*](https://reactjs.org/)
  * [*Next*](https://nextjs.org)
