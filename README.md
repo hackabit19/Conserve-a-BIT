@@ -46,6 +46,7 @@ In root directory:
  * [*Solidity*](https://github.com/ethereum/solidity) 
  * [*Node js*](https://nodejs.org)
  * [*React*](https://reactjs.org/)
+ * [*Next*](https://nextjs.org)
  * [*Infura*](https://infura.io/)
  * [*MongoDB*](https://www.mongodb.com/)
  
