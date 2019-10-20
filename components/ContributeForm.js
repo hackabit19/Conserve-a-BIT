@@ -21,7 +21,7 @@ class ContributeForm extends Component {
             await project.methods.support().send({
                from: accounts[0],
                 value: web3.utils.toWei(this.state.value, 'ether')
-            });
+            }
             Router.replaceRoute(`/projects/${this.props.address}`)
         } catch (err) {
             this.setState({error: err.message})
