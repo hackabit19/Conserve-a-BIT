@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc224935-a4b1-40e7-b15e-4e37ca19d0f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/npm-debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ContributeForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ContributeForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="fc224935-a4b1-40e7-b15e-4e37ca19d0f6" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +50,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1571501446608</updated>
-      <workItem from="1571501449336" duration="30836000" />
+      <workItem from="1571501449336" duration="31152000" />
     </task>
     <servers />
   </component>
