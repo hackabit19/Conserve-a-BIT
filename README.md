@@ -53,7 +53,7 @@ In root directory:
  * [*Next*](https://nextjs.org)
  * [*Infura*](https://infura.io/)
  * [*MongoDB*](https://www.mongodb.com/)
- 
+ * [*Web3 js*](https://github.com/ethereum/web3.js/)
  
 
 ## Members:
