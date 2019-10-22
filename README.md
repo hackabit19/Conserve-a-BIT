@@ -7,6 +7,8 @@ A crowdfunding platform for non-profits, government organisations and startups t
 
 ![picture](img/INFO.png)
 
+[View Smart Contract](https://github.com/adnan-azmat/Conserve-a-BIT/blob/master/ethereum/contracts/Project.sol)
+
 ## Features:
 
 * Decentralised and Transparent
@@ -55,6 +57,7 @@ In root directory:
  * [*MongoDB*](https://www.mongodb.com/)
  * [*Web3 js*](https://github.com/ethereum/web3.js/)
  
+WebApp template has been used from [here](https://github.com/bearski/Udemy-Ethereum-Solidity)
 
 ## Members:
 1. [Adnan Azmat](https://github.com/adnan-azmat)
